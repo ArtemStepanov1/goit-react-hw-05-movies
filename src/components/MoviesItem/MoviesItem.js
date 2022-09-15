@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 export const MoviesItem = ({ movie }) => {
     const { id, title, poster_path, vote_average } = movie;
     const { location } = useLocation();
-    const vote = vote_average ? vote_average.toFixed(1) : "";
+    const vote = vote_average ? vote_average.toFixed(1) : "0.0";
     
     return(
          <MovieWrapper>
@@ -28,12 +28,13 @@ export const MoviesItem = ({ movie }) => {
 }
 
 MoviesItem.propTypes = {
-    movie: PropTypes.shape({
+    movie: PropTypes.exact({
         id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         release_date: PropTypes.string.isRequired,
         vote_average: PropTypes.number.isRequired,
         overview: PropTypes.string.isRequired,
         poster_path: PropTypes.string,
-    }),
+    })
+
 };

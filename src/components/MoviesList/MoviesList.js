@@ -13,5 +13,5 @@ export const MoviesList = ({ movies }) => {
 }
 
 MoviesItem.propTypes = {
-    movie: PropTypes.shape,
+    movies: PropTypes.array,
 }

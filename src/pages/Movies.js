@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { getMovieByName } from "../API"
 import { MoviesList } from "../components/MoviesList/MoviesList";
 
-export const Movies = () => {
-    const [movies, setMovies] = useState(null);
+export default function Movies(){
+    const [movies, setMovies] = useState([]);
     const [query, setQuery] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
     const userQuery = searchParams.get('query');

@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 
 export function MovieInfo({ movie }) {
     const { title, genres, release_date, vote_average, overview, poster_path} = movie;
-    const poster = 'https://image.tmdb.org/t/p/w500' + poster_path ?? 'https://www.reelviews.net/resources/img/default_poster.jpg'; 
+    const poster = poster_path
+    ? 'https://image.tmdb.org/t/p/w500' + poster_path
+    : 'https://dummyimage.com/216x361/000/fff&text=No+poster'; 
     const vote = ((vote_average/10)*100).toFixed(0);
     const date = release_date?.slice(0, 4) ?? "";
     const genresArr = genres?.map(genre => genre.name).join(', ') ?? "";
-
     
     return (
         <>
@@ -45,11 +46,10 @@ export function MovieInfo({ movie }) {
 }
 
 MovieInfo.propTypes = {
-    movie: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        release_date: PropTypes.string.isRequired,
-        vote_average: PropTypes.number.isRequired,
-        overview: PropTypes.string.isRequired,
-        poster_path: PropTypes.string,
-    }),
+    movie: PropTypes.object,
+    title: PropTypes.string,
+    release_date: PropTypes.string,
+    vote_average: PropTypes.number,
+    overview: PropTypes.string,
+    poster_path: PropTypes.string,
 };
