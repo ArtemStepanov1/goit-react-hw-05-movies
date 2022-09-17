@@ -42,7 +42,7 @@ export const getMovieReviews = async (id) => {
 };
 
 export const getMovieByName = async (name) => {
-  const res = await axios.get(`search/movie/`, {
+  const res = await axios.get(`search/movie`, {
     params: {
       api_key: API_KEY,
       query: name,
