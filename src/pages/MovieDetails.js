@@ -10,7 +10,6 @@ export default function MovieDetails(){
     const [movie, setMovie] = useState([]);
     const location = useLocation();
     const backLinkHref = location?.state?.from ?? "/movies";
-    // console.log(location);
     
     useEffect(() => {
         (async () => {

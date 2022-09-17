@@ -10,7 +10,6 @@ export function MovieInfo({ movie, location }) {
     const vote = ((vote_average/10)*100).toFixed(0);
     const date = release_date?.slice(0, 4) ?? "";
     const genresArr = genres?.map(genre => genre.name).join(', ') ?? "";
-    console.log(location);
     
     return (
         <>
