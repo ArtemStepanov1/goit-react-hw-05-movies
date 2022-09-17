@@ -1,4 +1,4 @@
-import { useParams, useLocation, Outlet, Link } from "react-router-dom";
+import { useParams, useLocation, Outlet } from "react-router-dom";
 import { useState, useEffect, Suspense } from "react";
 import { getMovieById } from "../API";
 import { BackLink } from "components/BackLink/BackLink";
@@ -21,8 +21,6 @@ export default function MovieDetails(){
     <main>
         <BackLink to={backLinkHref}>Go back</BackLink>
         <MovieInfo movie={movie} location={location}/>
-        <Link to={backLinkHref}>Go back</Link>
-
         <Suspense fallback={<Loader />}>
             <Outlet />
         </Suspense>
