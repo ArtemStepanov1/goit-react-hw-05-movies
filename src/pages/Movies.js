@@ -6,34 +6,24 @@ import { MoviesList } from "../components/MoviesList/MoviesList";
 
 export default function Movies(){
     const [movies, setMovies] = useState([]);
-    const [query, setQuery] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
-    const userQuery = searchParams.get('query');
+    const query = searchParams.get('query') ?? "";
 
     useEffect(() => {
-        if(query === ''){
-            return;
-        }
+        if (!query) return;
         (async () => {
             const res = await getMovieByName(query);
             setMovies(res.results);
-            setSearchParams({ query: query });
         })();
-    }, [query, setSearchParams]);
+    }, [query]);
 
-    useEffect(() => {
-        if (userQuery === null) {
-            setMovies(null);
-            setQuery('');
-            return;
-        }
-
-        setQuery(userQuery);
-    }, [userQuery]);
+    const handleSearch = ( name ) => {
+        setSearchParams(name !== "" ? { query: name } : {})
+    }
 
     return (
         <main>
-            <MovieForm handleSubmit={setQuery} movies={movies}/>
+            <MovieForm onSearch={handleSearch} movies={movies}/>
             {movies && <MoviesList movies={movies}/>}
 
         </main>

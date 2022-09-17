@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const MoviePoster = styled.img`
     width: 100%;
-    height: 90%;
+    height: 87%;
     object-fit: cover;
-    border-radius-top: 8px;
+    border-radius: 8px 8px 0 0;
 `;
 
 export const MovieWrapper = styled.li`
@@ -34,8 +34,14 @@ export const MovieVote = styled.span`
     left: 16px;
 `;
 
+export const TitleWrap = styled.div`
+    width: 100%;
+    height: 100px;
+    padding: 8px
+`
+
 export const MovieTitle = styled.p`
-    margin: 8px;
     font-size: 24px;
     font-weight: 700;
+    color: black;
 `;

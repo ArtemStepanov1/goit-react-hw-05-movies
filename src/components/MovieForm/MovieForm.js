@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
 import { ImSearch } from "react-icons/im";
 import Notiflix from 'notiflix';
 import {
@@ -9,43 +7,29 @@ import {
     SearchFormInput,
 } from "./MovieForm.styled";
 
-export function MovieForm({ handleSubmit, movies }) {
-    const [query, setQuery] = useState('');
-    const [searchParams] = useSearchParams();
-    const userQuery = searchParams.get('query');
-
-    useEffect(() => {
-        if (!movies) return setQuery('');
-
-        setQuery(userQuery);
-    }, [movies, userQuery]);
-    
-    const onChange = e => {
-        setQuery(e.target.value);
-    };
+export function MovieForm({ onSearch }) {
    
     const onSubmit = e => {
         e.preventDefault();
-        
-        if(query.trim() === '') {
-            return Notiflix.Notify.warning('Enter your query');
+        const inpunValue = e.currentTarget.elements.query.value;
+        if(inpunValue.trim() === ''){ 
+            Notiflix.Notify.warning('Enter your query');
+            return;
         }
-        handleSubmit(query);
-        setQuery('');
+        onSearch(inpunValue);
+        e.currentTarget.reset()
     };
 
     return (
         <SearchForm 
         onSubmit={onSubmit}
-        movies={movies}
         >
             <SearchFormInput
                 type="text"
+                name="query"
                 autocomplete="off"
                 autoFocus
                 placeholder="Search movie"
-                value={query}
-                onChange={onChange}
             />
 
             <SearchFormBtn type="submit">
